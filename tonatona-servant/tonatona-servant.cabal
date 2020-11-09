@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7c3045f6422f00689d6132b94cb59fdd4a68b02d1a4a5c4d657cda7a9629f167
+-- hash: ceaa26cf91d1728afb1cbe10274af43652e2312b238da2881c1b55b60bd3a0f2
 
 name:           tonatona-servant
-version:        0.1.0.4
+version:        0.1.1.0
 synopsis:       tonatona plugin for servant.
 description:    Tonatona plugin for @servant@. This package provides a tonatona plugin for @servant@.
 category:       Library, Tonatona, Servant, Web
