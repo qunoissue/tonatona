@@ -59,8 +59,8 @@ dependencies:
   - base >= 4.7 && < 4.15
   - rio >= 0.1 && < 0.2
   - monad-logger >= 0.3 && < 0.4
-  - persistent >= 2.8 && < 2.11
-  - persistent-postgresql >= 2.8 && < 2.11
+  - persistent >= 2.8 && < 2.14
+  - persistent-postgresql >= 2.8 && < 2.14
   - resource-pool >= 0.2 && < 0.3
   - tonaparser >= 0.1 && < 0.2
   - tonatona >= 0.1 && < 0.2
