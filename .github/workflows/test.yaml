@@ -2,32 +2,67 @@ name: test
 on: [push, pull_request]
 
 jobs:
-  # cabal:
-  #   name: cabal - ${{ matrix.os }} - ghc ${{ matrix.plan.ghc }}
-  #   runs-on: ${{ matrix.os }}
-  #   continue-on-error: ${{ matrix.plan.allow-failure == true }}
-  #   strategy:
-  #     matrix:
-  #       plan:
-  #         - ghc: 8.8.3
-  #           cabal: 3.0.0.0
-  #         - ghc: 8.6.5
-  #           cabal: 2.4.1.0
-  #         - ghc: 8.4.4
-  #           cabal: 2.4.1.0
-  #         - ghc: 8.2.2
-  #           cabal: 2.4.1.0
-  #         - ghc: 'latest'
-  #           cabal: 'latest'
-  #           allow-failure: true
-  #       os: [ubuntu-latest, macOS-latest]
+  cabal:
+    name: cabal - ${{ matrix.os }} - ghc ${{ matrix.plan.ghc }}
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.plan.allow-failure == true }}
+    strategy:
+      matrix:
+        plan:
+          - ghc: 8.8.3
+            cabal: 3.0.0.0
+          - ghc: 8.6.5
+            cabal: 2.4.1.0
+          - ghc: 8.4.4
+            cabal: 2.4.1.0
+          - ghc: 8.2.2
+            cabal: 2.4.1.0
+          - ghc: 'latest'
+            cabal: 'latest'
+            allow-failure: true
+        os: [ubuntu-latest, macOS-latest]
 
-  #   steps:
-  #     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - uses: haskell/actions/setup@v1
-  #       with:
-  #         ghc-version: ${{ matrix.plan.ghc }}
+      - uses: haskell/actions/setup@v1
+        id: setup-haskell-cabal
+        with:
+          ghc-version: ${{ matrix.plan.ghc }}
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.setup-haskell-cabal.outputs.cabal-store }}
+            dist-newstyle
+          key: ${{ matrix.os }}-cabal-${{ matrix.plan.ghc }}
+          restore-keys: |
+            ${{ matrix.os }}-cabal-
+
+      - name: test
+        run: |
+          ORIGDIR=$(pwd)
+          PACKAGES=$(stack --install-ghc query locals | grep '^ *path' | sed 's@^ *path:@@')
+          for dir in $PACKAGES
+          do
+            cd $dir
+            cabal check || [ "$CABALVER" == "1.16" ]
+            cabal sdist
+            PKGVER=$(cabal info . | awk '{print $2;exit}')
+            SRC_TGZ=$PKGVER.tar.gz
+            cd dist
+            tar zxfv "$SRC_TGZ"
+            cd "$PKGVER"
+            cabal configure --enable-tests --ghc-options -O0
+            cabal build
+            if [ "$CABALVER" = "1.16" ] || [ "$CABALVER" = "1.18" ]; then
+              cabal test
+            else
+              cabal test --show-details=streaming --log=/dev/stdout
+            fi
+            cd $ORIGDIR
+          done
+          ;;
 
   stack:
     name: stack - ${{ matrix.os }} - ghc ${{ matrix.plan.ghc }}
