@@ -65,48 +65,48 @@ jobs:
           done
           ;;
 
-  stack:
-    name: stack - ${{ matrix.os }} - ghc ${{ matrix.plan.ghc }}
-    runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.plan.allow-failure == true }}
-    strategy:
-      matrix:
-        plan:
-          - ghc: 8.8.4
-            resolver: lts-16
-          - ghc: 8.8.3
-            resolver: lts-15
-          - ghc: 8.6.5
-            resolver: lts-14
-          - ghc: 8.6.5
-            resolver: lts-13
-          - ghc: 8.4.4
-            resolver: lts-12
-          - ghc: 8.2.2
-            resolver: lts-11
-          - ghc: latest
-            resolver: nightly
-            allow-failure: true
-        os: [ubuntu-latest, macOS-latest]
+  # stack:
+  #   name: stack - ${{ matrix.os }} - ghc ${{ matrix.plan.ghc }}
+  #   runs-on: ${{ matrix.os }}
+  #   continue-on-error: ${{ matrix.plan.allow-failure == true }}
+  #   strategy:
+  #     matrix:
+  #       plan:
+  #         - ghc: 8.8.4
+  #           resolver: lts-16
+  #         - ghc: 8.8.3
+  #           resolver: lts-15
+  #         - ghc: 8.6.5
+  #           resolver: lts-14
+  #         - ghc: 8.6.5
+  #           resolver: lts-13
+  #         - ghc: 8.4.4
+  #           resolver: lts-12
+  #         - ghc: 8.2.2
+  #           resolver: lts-11
+  #         - ghc: latest
+  #           resolver: nightly
+  #           allow-failure: true
+  #       os: [ubuntu-latest, macOS-latest]
 
-    steps:
-      - uses: actions/checkout@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - uses: haskell/actions/setup@v1
-        with:
-          ghc-version: ${{ matrix.plan.ghc }}
-          enable-stack: true
-          stack-version: 'latest'
+  #     - uses: haskell/actions/setup@v1
+  #       with:
+  #         ghc-version: ${{ matrix.plan.ghc }}
+  #         enable-stack: true
+  #         stack-version: 'latest'
 
-      - uses: actions/cache@v2
-        if: ${{ runner.os != 'macOS' }}
-        with:
-          path: |
-            ~/.stack
-            .stack-work
-          key: ${{ matrix.os }}-stack-${{ matrix.plan.resolver }}-${{ hashFiles('stack.yaml') }}
-          restore-keys: |
-            ${{ matrix.os }}-stack-
+  #     - uses: actions/cache@v2
+  #       if: ${{ runner.os != 'macOS' }}
+  #       with:
+  #         path: |
+  #           ~/.stack
+  #           .stack-work
+  #         key: ${{ matrix.os }}-stack-${{ matrix.plan.resolver }}-${{ hashFiles('stack.yaml') }}
+  #         restore-keys: |
+  #           ${{ matrix.os }}-stack-
 
-      - name: test
-        run: stack --no-terminal --system-ghc --resolver ${{ matrix.plan.resolver }} test --bench --no-run-benchmarks --haddock --no-haddock-deps --flag tonaparser:buildexample
+  #     - name: test
+  #       run: stack --no-terminal --system-ghc --resolver ${{ matrix.plan.resolver }} test --bench --no-run-benchmarks --haddock --no-haddock-deps --flag tonaparser:buildexample
