@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5e2ea05250718f88b6e2c048dc7fdead588f93dbe8823bd059e1140330f82566
+-- hash: 68be76b7f25d72cea230f5d12aceca83cb9e585370eaa5bbfe42a401fa7af06e
 
 name:           tonaparser
 version:        0.1.0.1
@@ -137,11 +137,11 @@ executable tonaparser-example
     , rio ==0.1.*
     , say
     , tonaparser
+  default-language: Haskell2010
   if flag(buildexample)
     buildable: True
   else
     buildable: False
-  default-language: Haskell2010
 
 test-suite doctest
   type: exitcode-stdio-1.0
