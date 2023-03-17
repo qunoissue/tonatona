@@ -5,6 +5,7 @@ extra-deps:
   - tonaparser-0.1.0.0
   - tonatona-0.1.0.0
   - tonatona-logger-0.2.0.0
+  - wai-extra-3.0.32@sha256:64fb2a3c8aaebd671be3fc0386a22ff125deafddd17c8157ebe9a61ec17eaaae,7290
 
 flags: {}
 extra-package-dbs: []
