@@ -107,7 +107,6 @@ jobs:
           cat >> $CABAL_CONFIG <<EOF
           remote-build-reporting: anonymous
           write-ghc-environment-files: never
-          remote-repo-cache: $CABAL_DIR/packages
           logs-dir:          $CABAL_DIR/logs
           world-file:        $CABAL_DIR/world
           extra-prog-path:   $CABAL_DIR/bin
@@ -214,12 +213,12 @@ jobs:
         run: |
           $CABAL v2-build $ARG_COMPILER $ARG_TESTS $ARG_BENCH --dry-run all
           cabal-plan
-      - name: cache
-        uses: actions/cache@v2
-        with:
-          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
-          path: ~/.cabal/store
-          restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
+      # - name: cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+      #     path: ~/.cabal/store
+      #     restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - name: install dependencies
         run: |
           $CABAL v2-build $ARG_COMPILER --disable-tests --disable-benchmarks --dependencies-only -j2 all
@@ -288,15 +287,15 @@ jobs:
           enable-stack: true
           stack-version: 'latest'
 
-      - uses: actions/cache@v2
-        if: ${{ runner.os != 'macOS' }}
-        with:
-          path: |
-            ~/.stack
-            .stack-work
-          key: ${{ matrix.os }}-stack-${{ matrix.plan.resolver }}-${{ hashFiles('stack.yaml') }}
-          restore-keys: |
-            ${{ matrix.os }}-stack-
+      # - uses: actions/cache@v2
+      #   if: ${{ runner.os != 'macOS' }}
+      #   with:
+      #     path: |
+      #       ~/.stack
+      #       .stack-work
+      #     key: ${{ matrix.os }}-stack-${{ matrix.plan.resolver }}-${{ hashFiles('stack.yaml') }}
+      #     restore-keys: |
+      #       ${{ matrix.os }}-stack-
 
       - name: test
         run: stack --no-terminal --system-ghc --resolver ${{ matrix.plan.resolver }} test --bench --no-run-benchmarks --haddock --no-haddock-deps --flag tonaparser:buildexample
