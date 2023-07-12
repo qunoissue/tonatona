@@ -214,12 +214,12 @@ jobs:
         run: |
           $CABAL v2-build $ARG_COMPILER $ARG_TESTS $ARG_BENCH --dry-run all
           cabal-plan
-      # - name: cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
-      #     path: ~/.cabal/store
-      #     restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
+      - name: cache
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+          path: ~/.cabal/store
+          restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - name: install dependencies
         run: |
           $CABAL v2-build $ARG_COMPILER --disable-tests --disable-benchmarks --dependencies-only -j2 all
