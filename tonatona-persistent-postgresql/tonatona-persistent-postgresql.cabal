@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d959a2debfa374d887c7965db8cde7d1b494e89f19578416c3c4f561f3fbb047
+-- hash: dd6dd1b6f2c79714060afd11f7eb643b3c8d921ac4a1f34a81647e23515af374
 
 name:           tonatona-persistent-postgresql
 version:        0.1.0.2
@@ -19,8 +19,6 @@ copyright:      2018 Kadzuya Okamoto
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
-tested-with:
-    GHC==8.8.3, GHC==8.8.2, GHC==8.6.5, GHC==8.6.3, GHC==8.4.3, GHC==8.2.2
 extra-source-files:
     README.md
 
@@ -77,11 +75,11 @@ library
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.7 && <4.15
+      base >=4.14 && <4.18
     , monad-logger ==0.3.*
-    , persistent >=2.8 && <2.11
-    , persistent-postgresql >=2.8 && <2.11
-    , resource-pool ==0.2.*
+    , persistent >=2.13 && <2.15
+    , persistent-postgresql ==2.13.*
+    , resource-pool >=0.2 && <0.5
     , rio ==0.1.*
     , tonaparser ==0.1.*
     , tonatona ==0.1.*
@@ -135,12 +133,12 @@ test-suite doctest
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       Glob
-    , base >=4.7 && <4.15
+    , base >=4.14 && <4.18
     , doctest
     , monad-logger ==0.3.*
-    , persistent >=2.8 && <2.11
-    , persistent-postgresql >=2.8 && <2.11
-    , resource-pool ==0.2.*
+    , persistent >=2.13 && <2.15
+    , persistent-postgresql ==2.13.*
+    , resource-pool >=0.2 && <0.5
     , rio ==0.1.*
     , tonaparser ==0.1.*
     , tonatona ==0.1.*
@@ -193,11 +191,11 @@ test-suite spec
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.7 && <4.15
+      base >=4.14 && <4.18
     , monad-logger ==0.3.*
-    , persistent >=2.8 && <2.11
-    , persistent-postgresql >=2.8 && <2.11
-    , resource-pool ==0.2.*
+    , persistent >=2.13 && <2.15
+    , persistent-postgresql ==2.13.*
+    , resource-pool >=0.2 && <0.5
     , rio ==0.1.*
     , tonaparser ==0.1.*
     , tonatona
