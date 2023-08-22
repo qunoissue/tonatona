@@ -11,19 +11,29 @@ jobs:
       matrix:
         plan:
           - ghc: 8.10.7
+            cabal: 3.4
+          - ghc: 8.10.7
+            cabal: 3.6
+          - ghc: 8.10.7
+            cabal: latest
           - ghc: 9.0.2
+            cabal: 3.4
+          - ghc: 9.0.2
+            cabal: 3.6
+          - ghc: 9.0.2
+            cabal: latest
           - ghc: 9.2.8
+            cabal: 3.6
+          - ghc: 9.2.8
+            cabal: latest
           - ghc: 9.4.6
+            cabal: 3.6
+          - ghc: 9.4.6
+            cabal: latest
           - ghc: latest
+            cabal: latest
             allow-failure: true
         os: [ubuntu-latest, macOS-latest]
-        cabal: [3.4, 3.6, latest]
-        exclude:
-          - plan:
-              - ghc: 9.2.8
-              - ghc: 9.4.6
-              - ghc: latest
-            cabal: 3.4
 
     steps:
       # - name: Cache Cabal build artifacts
@@ -40,7 +50,7 @@ jobs:
         uses: haskell/actions/setup@v2
         with:
           ghc-version: ${{ matrix.plan.ghc }}
-          cabal-version: ${{ matrix.cabal }}
+          cabal-version: ${{ matrix.plan.cabal }}
       - name: Build & test
         run: |
           cabal v2-build all
