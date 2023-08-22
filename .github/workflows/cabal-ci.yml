@@ -17,7 +17,13 @@ jobs:
           - ghc: latest
             allow-failure: true
         os: [ubuntu-latest, macOS-latest]
-        cabal: ['3.4', '3.6', 'latest']
+        cabal: [3.4, 3.6, latest]
+        exclude:
+          - plan:
+              - ghc: 9.2.8
+              - ghc: 9.4.6
+              - ghc: latest
+            cabal: 3.4
 
     steps:
       # - name: Cache Cabal build artifacts
