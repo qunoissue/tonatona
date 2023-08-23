@@ -1,4 +1,4 @@
-cabal-version: 1.12
+cabal-version: 1.24
 
 -- This file has been generated from package.yaml by hpack version 0.35.1.
 --
@@ -16,13 +16,20 @@ maintainer:     arow.okamoto+github@gmail.com
 copyright:      2018 Kadzuya Okamoto
 license:        MIT
 license-file:   LICENSE
-build-type:     Simple
+build-type:     Custom
 extra-source-files:
     README.md
 
 source-repository head
   type: git
   location: https://github.com/tonatona-project/tonatona
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base >=4.14 && <4.18
+    , cabal-doctest >=1 && <1.1
+    , rio ==0.1.*
 
 flag buildexample
   description: Build a small example program
@@ -139,9 +146,9 @@ executable tonaparser-example
   else
     buildable: False
 
-test-suite doctest
+test-suite doctests
   type: exitcode-stdio-1.0
-  main-is: DocTest.hs
+  main-is: doctests.hs
   hs-source-dirs:
       test
   default-extensions:
@@ -184,8 +191,7 @@ test-suite doctest
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      Glob
-    , base >=4.14 && <4.18
+      base >=4.14 && <4.18
     , doctest
     , envy ==2.1.*
     , rio ==0.1.*

@@ -54,4 +54,4 @@ jobs:
       - name: Build & test
         run: |
           cabal v2-build all
-          cabal v2-test --enable-test all
+          cabal v2-test --enable-tests all
