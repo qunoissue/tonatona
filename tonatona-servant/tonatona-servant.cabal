@@ -1,10 +1,10 @@
-cabal-version: 1.12
+cabal-version: 1.24
 
 -- This file has been generated from package.yaml by hpack version 0.35.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0462add9777845ba224c14231865c0fb9c713afe333a556a465860fa225161b1
+-- hash: ba25424b8dd0f7e6676115297d1d581b7e8bab817671f7cd69a07e22bf3533ee
 
 name:           tonatona-servant
 version:        0.1.0.4
@@ -18,13 +18,20 @@ maintainer:     arow.okamoto+github@gmail.com
 copyright:      2018 Kadzuya Okamoto
 license:        MIT
 license-file:   LICENSE
-build-type:     Simple
+build-type:     Custom
 extra-source-files:
     README.md
 
 source-repository head
   type: git
   location: https://github.com/tonatona-project/tonatona
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base >=4.14 && <5
+    , cabal-doctest >=1 && <1.1
+    , rio ==0.1.*
 
 library
   exposed-modules:
@@ -75,7 +82,7 @@ library
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , data-default ==0.7.*
     , exceptions ==0.10.*
     , http-types ==0.12.*
@@ -91,9 +98,9 @@ library
     , warp ==3.3.*
   default-language: Haskell2010
 
-test-suite doctest
+test-suite doctests
   type: exitcode-stdio-1.0
-  main-is: DocTest.hs
+  main-is: doctests.hs
   hs-source-dirs:
       test
   default-extensions:
@@ -138,8 +145,7 @@ test-suite doctest
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      Glob
-    , base >=4.14 && <4.18
+      base >=4.14 && <5
     , data-default ==0.7.*
     , doctest
     , exceptions ==0.10.*
@@ -203,7 +209,7 @@ test-suite spec
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , data-default ==0.7.*
     , exceptions ==0.10.*
     , http-types ==0.12.*

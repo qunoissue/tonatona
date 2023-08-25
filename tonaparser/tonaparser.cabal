@@ -27,7 +27,7 @@ source-repository head
 custom-setup
   setup-depends:
       Cabal
-    , base >=4.14 && <4.18
+    , base >=4.14 && <5
     , cabal-doctest >=1 && <1.1
     , rio ==0.1.*
 
@@ -83,7 +83,7 @@ library
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , envy ==2.1.*
     , rio ==0.1.*
     , say ==0.1.*
@@ -135,7 +135,7 @@ executable tonaparser-example
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , envy ==2.1.*
     , rio ==0.1.*
     , say
@@ -191,7 +191,7 @@ test-suite doctests
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , doctest
     , envy ==2.1.*
     , rio ==0.1.*
@@ -243,7 +243,7 @@ test-suite spec
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , envy ==2.1.*
     , rio ==0.1.*
     , say ==0.1.*

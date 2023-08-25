@@ -13,6 +13,13 @@ maintainer: "arow.okamoto+github@gmail.com"
 extra-source-files:
   - README.md
 
+custom-setup:
+  dependencies:
+    - base >= 4.14 && < 5
+    - Cabal
+    - cabal-doctest >= 1 && <1.1
+    - rio >= 0.1 && < 0.2
+
 ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
 default-extensions:
   - BangPatterns
@@ -56,7 +63,7 @@ default-extensions:
   - ViewPatterns
 
 dependencies:
-  - base >= 4.14 && < 4.18
+  - base >= 4.14 && < 5
   - rio >= 0.1 && < 0.2
   - monad-logger >= 0.3 && < 0.4
   - persistent >= 2.13 && < 2.15
@@ -79,13 +86,12 @@ tests:
       - test
     dependencies:
       - tonatona
-  doctest:
-    main: "DocTest.hs"
+  doctests:
+    main: "doctests.hs"
     other-modules: []
     source-dirs:
       - test
     dependencies:
       - doctest
-      - Glob
 
 github: tonatona-project/tonatona

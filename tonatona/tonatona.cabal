@@ -1,10 +1,10 @@
-cabal-version: 1.12
+cabal-version: 1.24
 
 -- This file has been generated from package.yaml by hpack version 0.35.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 98bc1913f3c6d28c1692d4efeb7ac7461751498eafc44fda2bc8725ddeaf0a9f
+-- hash: 8f941923ec14d16927562f597e81d84108929946c6db1238949eb7858ed84720
 
 name:           tonatona
 version:        0.1.2.1
@@ -18,13 +18,20 @@ maintainer:     arow.okamoto+github@gmail.com
 copyright:      2018 Kadzuya Okamoto
 license:        MIT
 license-file:   LICENSE
-build-type:     Simple
+build-type:     Custom
 extra-source-files:
     README.md
 
 source-repository head
   type: git
   location: https://github.com/tonatona-project/tonatona
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base >=4.14 && <5
+    , cabal-doctest >=1 && <1.1
+    , rio ==0.1.*
 
 library
   exposed-modules:
@@ -76,14 +83,14 @@ library
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , rio ==0.1.*
     , tonaparser ==0.1.*
   default-language: Haskell2010
 
-test-suite doctest
+test-suite doctests
   type: exitcode-stdio-1.0
-  main-is: DocTest.hs
+  main-is: doctests.hs
   hs-source-dirs:
       test
   default-extensions:
@@ -129,8 +136,7 @@ test-suite doctest
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      Glob
-    , base >=4.14 && <4.18
+      base >=4.14 && <5
     , doctest
     , rio ==0.1.*
     , tonaparser ==0.1.*
@@ -184,7 +190,7 @@ test-suite spec
       ViewPatterns
   ghc-options: -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.14 && <4.18
+      base >=4.14 && <5
     , rio ==0.1.*
     , tonaparser ==0.1.*
     , tonatona

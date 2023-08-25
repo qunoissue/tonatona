@@ -90,13 +90,12 @@ tests:
       - hspec
       - QuickCheck
   doctest:
-    main: "DocTest.hs"
+    main: "doctests.hs"
     other-modules: []
     source-dirs:
       - test
     dependencies:
       - sample
       - doctest
-      - Glob
 
 github: githubuser/sample

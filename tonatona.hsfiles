@@ -81,15 +81,14 @@ tests:
       - {{name}}
       - hspec
       - QuickCheck
-  doctest:
-    main: "DocTest.hs"
+  doctests:
+    main: "doctests.hs"
     other-modules: []
     source-dirs:
       - test
     dependencies:
       - {{name}}
       - doctest
-      - Glob
 
 github: {{github-username}}{{^github-username}}githubuser{{/github-username}}/{{name}}
 
